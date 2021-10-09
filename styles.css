@@ -1,0 +1,7 @@
+#canvas {
+	display: flex;
+	justify-content: center;
+	max-width: 500px;
+	margin: auto;
+	margin-top: 150px;
+}
