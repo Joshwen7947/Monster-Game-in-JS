@@ -5,3 +5,8 @@
 	margin: auto;
 	margin-top: 150px;
 }
+
+.scoreBoard {
+	text-align: center;
+	font-size: 2rem;
+}

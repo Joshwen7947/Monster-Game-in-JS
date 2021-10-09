@@ -17,8 +17,11 @@ canvas.width = 512;
 canvas.height = 480;
 document.getElementById('canvas').appendChild(canvas);
 
-let bg = {};
+const score = document.getElementById(`score`);
+let current = 0;
+score.innerHTML = current;
 
+let bg = {};
 // APPLICATION STATE
 // const applicationState = {
 // 	isGameOver: false,
@@ -105,14 +108,6 @@ function setupKeyboardListeners() {
 	);
 }
 
-function randomlyPlace(axis) {
-	if (axis === 'x') {
-		return Math.floor(Math.random() * canvas.width + 1);
-	} else {
-		return Math.floor(Math.random() * canvas.height + 1);
-	}
-}
-
 /**
  *  Update game objects - change player position based on key pressed
  *  and check to see if the monster has been caught!
@@ -169,8 +164,16 @@ let update = function () {
 			monster.y = randomlyPlace('y');
 		}
 	});
+	current++;
+	// console.log(current);
 };
-
+function randomlyPlace(axis) {
+	if (axis === 'x') {
+		return Math.floor(Math.random() * canvas.width - 10);
+	} else {
+		return Math.floor(Math.random() * canvas.height - 10);
+	}
+}
 /**
  * This function, render, runs as often as possible.
  */
