@@ -16,10 +16,8 @@ const ctx = canvas.getContext('2d');
 canvas.width = 512;
 canvas.height = 480;
 document.getElementById('canvas').appendChild(canvas);
-
 const score = document.getElementById(`score`);
-let current = 0;
-score.innerHTML = current;
+const highScore = document.getElementById(`highScore`);
 
 let bg = {};
 // APPLICATION STATE
@@ -53,7 +51,7 @@ let monsters = [
 ];
 
 let startTime = Date.now();
-const SECONDS_PER_ROUND = 60;
+const SECONDS_PER_ROUND = 10;
 let elapsedTime = 0;
 
 function loadImages() {
@@ -158,22 +156,34 @@ let update = function () {
 			hero.y <= monster.y + 32 &&
 			monster.y <= hero.y + 32
 		) {
-			// Pick a new location for the monster.
+			console.log('The Current Score is : ' + currentScore);
+			console.log('The Total Score is : ' + totalScore); // Pick a new location for the monster.
 			// Note: Change this to place the monster at a new, random location.
 			monster.x = randomlyPlace('x');
 			monster.y = randomlyPlace('y');
+			currentScore++;
+			score.innerHTML = currentScore;
+		}
+		if (SECONDS_PER_ROUND - elapsedTime === 0) {
+			monster.x = -50;
+			monster.y = -50;
+			document.body.style.backgroundColor = 'red';
+			console.log(`Game over!  Your score was ${currentScore}`);
+			highScore.innerHTML = currentScore;
 		}
 	});
-	current++;
-	// console.log(current);
 };
 function randomlyPlace(axis) {
 	if (axis === 'x') {
-		return Math.floor(Math.random() * canvas.width - 10);
+		return Math.floor(Math.random() * canvas.width - 20);
 	} else {
-		return Math.floor(Math.random() * canvas.height - 10);
+		return Math.floor(Math.random() * canvas.height - 20);
 	}
 }
+//
+let currentScore, totalScore;
+currentScore = 0;
+totalScore = 0;
 /**
  * This function, render, runs as often as possible.
  */
@@ -206,6 +216,12 @@ function main() {
 	requestAnimationFrame(main);
 }
 
+function reset() {
+	console.log(`clicked`);
+	document.body.style.backgroundColor = 'white';
+	score.innerHTML = 0;
+}
+document.getElementById(`btn`).addEventListener(`click`, reset);
 // Cross-browser support for requestAnimationFrame.
 // Safely ignore this line. It's mostly here for people with old web browsers.
 var w = window;
@@ -218,4 +234,5 @@ requestAnimationFrame =
 // Let's play this game!
 loadImages();
 setupKeyboardListeners();
+
 main();
