@@ -6,11 +6,20 @@
 		<title>Best Game Ever!</title>
 	</head>
 	<body>
+		<div class="gamertag">
+			<input id="input" placeholder="Username" />
+			<br />
+			<button id="btn2" onclick="inputName()">Enter</button>
+		</div>
+
 		<div id="canvas"></div>
 		<div class="scoreBoard">
 			<h1>Score: <b id="score"></b></h1>
 			<h1>High Score: <b id="highScore"></b></h1>
 			<button id="btn">RESET GAME</button>
+		</div>
+		<div id="listOfNames">
+			<div id="usernameList"></div>
 		</div>
 		<script src="game.js"></script>
 	</body>

@@ -3,7 +3,7 @@
 	justify-content: center;
 	max-width: 500px;
 	margin: auto;
-	margin-top: 150px;
+	margin-top: 100px;
 }
 
 .scoreBoard {
@@ -18,4 +18,31 @@
 }
 #btn:hover {
 	cursor: pointer;
+}
+
+.gamertag {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#input {
+	padding: 20px 50px;
+	font-size: 2rem;
+	border-radius: 10px;
+	border: none;
+	background-color: rgb(220, 220, 220);
+}
+
+#btn2 {
+	padding: 15px 25px;
+	font-size: 2rem;
+	border-radius: 15px;
+	border: none;
+	margin-top: 25px;
+}
+
+#listOfNames {
+	text-align: center;
+	font-size: 3rem;
+	padding-top: 25px;
 }

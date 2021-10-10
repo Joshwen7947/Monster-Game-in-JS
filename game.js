@@ -18,6 +18,14 @@ canvas.height = 480;
 document.getElementById('canvas').appendChild(canvas);
 const score = document.getElementById(`score`);
 const highScore = document.getElementById(`highScore`);
+//TAKE USERNAME INPUT
+function inputName() {
+	let str = document.getElementById(`input`).value;
+	let listOfNames = document.getElementById(`listOfNames`);
+	let usernameList = document.createTextNode(`${str}`);
+	listOfNames.appendChild(usernameList);
+	// alert(`Value inside the box is ${str}`);
+}
 
 let bg = {};
 // APPLICATION STATE
@@ -32,7 +40,13 @@ let bg = {};
 // 	gameHistory: [{ user: null, score: 0, date: null }],
 // };
 //
-
+function reset() {
+	document.body.style.backgroundColor = 'white';
+	score.innerText = 0;
+	highScore += currentScore;
+	location.reload();
+}
+document.getElementById(`btn`).addEventListener(`click`, reset);
 /**
  * Setting up our characters.
  *
@@ -201,7 +215,9 @@ function render() {
 	});
 	ctx.fillText(`Seconds Remaining: ${SECONDS_PER_ROUND - elapsedTime}`, 50, 50);
 }
-
+function drawMonster() {
+	ctx.drawImage(monster.image, monster.x, monster.y);
+}
 /**
  * The main game loop. Most every game will have two distinct parts:
  * update (updates the state of the game, in this case our hero and monster)
@@ -216,12 +232,6 @@ function main() {
 	requestAnimationFrame(main);
 }
 
-function reset() {
-	console.log(`clicked`);
-	document.body.style.backgroundColor = 'white';
-	score.innerHTML = 0;
-}
-document.getElementById(`btn`).addEventListener(`click`, reset);
 // Cross-browser support for requestAnimationFrame.
 // Safely ignore this line. It's mostly here for people with old web browsers.
 var w = window;
