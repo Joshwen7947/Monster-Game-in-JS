@@ -41,7 +41,7 @@ let bg = {};
 // };
 //
 function reset() {
-	document.body.style.backgroundColor = 'white';
+	document.body.style.backgroundColor = 'rgb(0, 98, 128)';
 	score.innerText = 0;
 	highScore += currentScore;
 	location.reload();
