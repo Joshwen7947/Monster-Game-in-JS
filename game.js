@@ -18,12 +18,18 @@ canvas.height = 480;
 document.getElementById('canvas').appendChild(canvas);
 const score = document.getElementById(`score`);
 const highScore = document.getElementById(`highScore`);
+//
+let currentScore, totalScore;
+currentScore = 0;
+totalScore = 0;
+let usernameList = document.getElementById(`usernameList`);
 //TAKE USERNAME INPUT
 function inputName() {
 	let str = document.getElementById(`input`).value;
 	let listOfNames = document.getElementById(`listOfNames`);
-	let usernameList = document.createTextNode(`${str}`);
+	usernameList = document.createTextNode(`${str}`);
 	listOfNames.appendChild(usernameList);
+
 	// alert(`Value inside the box is ${str}`);
 }
 
@@ -44,13 +50,13 @@ function reset() {
 	document.body.style.backgroundColor = 'rgb(0, 98, 128)';
 	score.innerText = 0;
 	highScore += currentScore;
-	location.reload();
+	main();
 }
 document.getElementById(`btn`).addEventListener(`click`, reset);
 /**
  * Setting up our characters.
  *
- * Note that hero.x represents the X position of our hero.
+ * Note that hero.x represents the X position of our hero.s
  * hero.y represents the Y position.
  * We'll need these values to know where to "draw" the hero.
  * The same goes for the monsters
@@ -155,7 +161,7 @@ let update = function () {
 	}
 	if (keysPressed['ArrowRight']) {
 		hero.x += 5;
-		if (hero.x > 550) {
+		if (hero.x > 550) 
 			console.log(`test 4`);
 			hero.x = hero.x = 0;
 		}
@@ -195,9 +201,7 @@ function randomlyPlace(axis) {
 	}
 }
 //
-let currentScore, totalScore;
-currentScore = 0;
-totalScore = 0;
+
 /**
  * This function, render, runs as often as possible.
  */
@@ -214,6 +218,9 @@ function render() {
 		}
 	});
 	ctx.fillText(`Seconds Remaining: ${SECONDS_PER_ROUND - elapsedTime}`, 50, 50);
+	if (SECONDS_PER_ROUND - elapsedTime === 0) {
+		ctx.fillText(`TIME OUT`);
+	}
 }
 function drawMonster() {
 	ctx.drawImage(monster.image, monster.x, monster.y);
